@@ -5,6 +5,7 @@ dicionario = {"A": [], "B": [], "C": [], "D": [], "E": [], "F": [], "G": [], "H"
 c = 0
 alfabeto = list(dicionario.keys())
 string = ""
+level = {}
 
 df = pandas.read_csv("br-sem-acentos.txt")
 for i in df["a"]:
@@ -12,11 +13,18 @@ for i in df["a"]:
         dicionario[alfabeto[c]].append(i)
     else:
         c += 1
-for i in range(0, 10): 
+
+num_of_levels = int(input("Escolha a quantidade de levels: \n"))
+
+for x in range(0, num_of_levels): 
     for i in alfabeto:
         if len(dicionario[i]) > 0:
             string += (dicionario[i][(random.randint(0, (len(dicionario[i])-1)))]) + " "
+            level[x] = string
 
-print(string)
+finalstr = ""
 
+for i in level:
+    finalstr += (level[i] + "\n")
 
+print(finalstr)
